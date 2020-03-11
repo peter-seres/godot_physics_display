@@ -17,6 +17,8 @@ Make sure the target port is the same port that 'udp_update.gd' is listening to.
 
 ## Setup
 
+In Godot click Import -> godot_physics_display/project.godot
+
 Virtual environment:
 
     python -m venv venv
