@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/vtol.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://godot_scripts/main.gd" type="Script" id=2]
@@ -7,16 +7,15 @@
 [ext_resource path="res://assets/GroundTexture_2K/Ground037_2K_Roughness.jpg" type="Texture" id=5]
 [ext_resource path="res://assets/GroundTexture_2K/Ground037_2K_Color.jpg" type="Texture" id=6]
 [ext_resource path="res://assets/GroundTexture_2K/Ground037_2K_AmbientOcclusion.jpg" type="Texture" id=7]
-[ext_resource path="res://scenes/UAVTransformTracking.gd" type="Script" id=8]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.847059, 0.827451, 0.352941, 1 )
 
+[sub_resource type="CubeMesh" id=2]
+
 [sub_resource type="CubeMesh" id=3]
 
-[sub_resource type="CubeMesh" id=4]
-
-[sub_resource type="SpatialMaterial" id=5]
+[sub_resource type="SpatialMaterial" id=4]
 albedo_texture = ExtResource( 6 )
 roughness = 0.8
 roughness_texture = ExtResource( 5 )
@@ -48,7 +47,6 @@ transform = Transform( -1.60848e-07, 0.15902, -0.987275, 2.59076e-08, 0.987275, 
 far = 300.0
 
 [node name="UAVTransformTracking" type="Spatial" parent="."]
-script = ExtResource( 8 )
 
 [node name="StaticCamera" type="Camera" parent="."]
 transform = Transform( 0.707107, 0.353553, -0.612372, 0, 0.866025, 0.5, 0.707107, -0.353553, 0.612372, -14, 10, 19 )
@@ -65,45 +63,45 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.498842 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Terrain"]
 transform = Transform( 5.18411, -2.2113, -1.25161, 2.67125, 4.29148, 2.429, 0, -2.76038, 4.77895, 37.9933, -1.79506, -1.23755 )
-mesh = SubResource( 3 )
+mesh = SubResource( 2 )
 material/0 = null
 
 [node name="MeshInstance2" type="MeshInstance" parent="Terrain"]
 transform = Transform( 5.56706, 1.43821, 0.814035, -1.73736, 4.60849, 2.60843, 0, -2.76038, 4.77895, 1.17854, -1.79506, 40.7606 )
-mesh = SubResource( 3 )
+mesh = SubResource( 2 )
 material/0 = null
 
 [node name="MeshInstance3" type="MeshInstance" parent="Terrain"]
 transform = Transform( 5.56706, 1.43821, 0.814035, 0.39469, 1.64125, -5.24658, -1.69193, 5.11509, 1.45456, 0.418495, -1.79506, -63.741 )
-mesh = SubResource( 3 )
+mesh = SubResource( 2 )
 material/0 = null
 
 [node name="MeshInstance4" type="MeshInstance" parent="Terrain"]
 transform = Transform( 5.56706, 1.43821, 0.814035, 0.883239, 0.0341806, -5.44139, -1.4961, 5.37185, -0.183319, -41.9921, -3.72629, -5.7213 )
-mesh = SubResource( 3 )
+mesh = SubResource( 2 )
 material/0 = null
 
 [node name="MeshInstance5" type="MeshInstance" parent="Terrain"]
 transform = Transform( 30.5049, 7.55521, -16.6501, -3.92472, -2.81322, -49.6529, -8.39638, 28.5354, -0.901025, -113.281, -8.23221, -63.4015 )
-mesh = SubResource( 3 )
+mesh = SubResource( 2 )
 material/0 = null
 
 [node name="MeshInstance7" type="MeshInstance" parent="Terrain"]
 transform = Transform( 29.0931, -11.8665, -12.4632, -3.92472, -2.81322, -49.6529, 12.4355, 27.0285, -11.0772, 161.574, -12.8036, -97.9951 )
-mesh = SubResource( 3 )
+mesh = SubResource( 2 )
 material/0 = null
 
 [node name="MeshInstance6" type="MeshInstance" parent="Terrain"]
 transform = Transform( 15.0808, 25.811, -12.1857, -11.2428, 1.13244, -44.7791, -25.7415, 14.5525, 24.2855, -113.281, -31.3486, 88.9331 )
-mesh = SubResource( 3 )
+mesh = SubResource( 2 )
 material/0 = null
 
 [node name="MeshInstance8" type="MeshInstance" parent="Terrain"]
 transform = Transform( 15.0808, 25.811, -12.1857, -11.2428, 1.13244, -44.7791, -25.7415, 14.5525, 24.2855, 127.428, -31.3486, 88.9331 )
-mesh = SubResource( 3 )
+mesh = SubResource( 2 )
 material/0 = null
 
 [node name="Ground" type="MeshInstance" parent="Terrain"]
 transform = Transform( 713.961, 0, 0, 0, 1, 0, 0, 0, 713.961, 0, -4.65714, 0 )
-mesh = SubResource( 4 )
-material/0 = SubResource( 5 )
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )

@@ -1,37 +1,43 @@
-# godot_physics_display
+# Using the godot display folder
+
 A tool to display 6DOF physics simulations in 3D using the Godot Engine.
-It uses a UDP stream between the python simulation and the game engine.
-
-## Use
-
-Run the Godot project and run the game. 
-
-Run the python simulation using:
-
-    python python_sim
-    
-The simulation is just an applied force or moment within the simulations package.
-Change __main__ to different simulations.
-
-Make sure the target port is the same port that 'udp_update.gd' is listening to.
+It uses a UDP stream between the simulations and the game engine. Currently implemented for Python and Rust.
 
 ## Setup
 
-In Godot click Import -> godot_physics_display/project.godot
+Clone the repository.
 
-Virtual environment:
+Download the latest version of the Godot Engine from:
 
-    python -m venv venv
-    
-Windows:
+## Usage
 
-    venv\scripts\activate
-    
-Linux:
+Run Godot and in the Editor: open the `project.godot` file using the Import button and you will see the simulation scene.
 
-    source venv/bin/activate
-    
-Packages:
+Press the play button to run the display application.
 
-    pip install --upgrade pip
-    pip install -r requiremens.txt
+The application is now waiting for StateUpdate JSON packages with two vectors: position (R3) and attitude (R4).
+
+## Python Instructions:
+
+### Make a UDP Stream
+
+Make sure that the target port is the same as the port set in Godot. By selecting the UAV node, the Inspector on the right shows the `Script Variables` -> `Port` setting. 
+
+In the simulation do:
+```python
+    import visualization.godot_display as godot
+    godot_connection = godot.StreamUDP(port=9999, target_port=12345)
+```
+
+## Send data packet every 1/60.0 of a second:
+
+```python
+    # Coordinate-system transformation from NED to Godot:
+    godot_position = godot.transform_translation(uav.position)
+    godot_attitude = godot.transform_rotation(uav.orientation)
+
+    # Make packet and send:
+    update = godot.StateUpdate(position=godot_position, attitude=godot_attitude)
+    godot_connection.send(packet=update)
+
+```
